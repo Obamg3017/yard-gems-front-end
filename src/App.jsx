@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import NavBar from "./components/Navbar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import GoogleMap from "./components/Map/Map.jsx";
@@ -10,7 +10,7 @@ import Profile from "./components/Profile/Profile.jsx";
 import SignUp from "./components/Auth/SignUp/SignUp.jsx";
 import { Toaster } from "react-hot-toast";
 import SignIn from "./components/Auth/SignIn/SignIn.jsx";
-import { verifyUser } from "../Services/user.js";
+import { verifyUser } from "../Services/auth.js";
 
 const App = () => {
   const [user, setUser] = useState(null);

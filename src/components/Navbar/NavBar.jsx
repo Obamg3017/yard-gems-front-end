@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { signOut } from "../../../Services/user";
+import { signOut } from "../../../Services/auth";
 import "./navbar.css";
 
 const NavBar = ({ user, setUser }) => {
