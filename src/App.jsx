@@ -10,7 +10,7 @@ import Profile from "./components/Profile/Profile.jsx";
 import SignUp from "./components/Auth/SignUp/SignUp.jsx";
 import { Toaster } from "react-hot-toast";
 import SignIn from "./components/Auth/SignIn/SignIn.jsx";
-import { verifyUser } from "../Services/auth.js";
+import { verifyUser } from "../ServicesTemp/auth.js";
 
 const App = () => {
   const [user, setUser] = useState(null);
