@@ -1,0 +1,31 @@
+nav {
+    position: fixed;
+    background-color: rgb(25, 93, 70);
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.mainnav {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+}
+
+.mainnav a {
+    color: white;
+    text-decoration: none;
+}
+
+.mainnav a:hover {
+    color: red;
+}
+
+li {
+    margin: 20px;
+    gap: 15px;
+}
