@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { signUp } from "../../../../Services/auth";
+import { signUp } from "../../../../services/auth";
 
 import "./signup.css";
 const SignUp = ({ setUser }) => {
