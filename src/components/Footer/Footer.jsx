@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import "./footer.css"
 
-const NavBar = () => {
+const Footer = () => {
   return (
-    <nav>
+    <footer>
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -14,8 +15,8 @@ const NavBar = () => {
           <Link to="/map">View Map</Link>
         </li>
       </ul>
-    </nav>
+    </footer>
   );
 };
 
-export default NavBar;
+export default Footer
