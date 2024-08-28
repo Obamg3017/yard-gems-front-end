@@ -1,15 +1,15 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import NavBar from './components/NavBar/NavBar.jsx'
+import NavBar from './components/Navbar/NavBar.jsx'
 import Footer from './components/Footer/Footer.jsx'
+import { Route, Routes } from 'react-router-dom'
+import LandingPage from './components/LandingPage/LandingPage.jsx'
 
 const App = () => {
   return (
-    <div>
+    <div className="container">
       <NavBar />
-      <h1>Landing Page</h1>
       <Routes>
-        <Route path="/" element={<h1>Home Page</h1>} />
+        <Route path="/" element={<LandingPage />} /> 
         <Route path="/profile" element={<h1>Profile</h1>} />
         <Route path="/about" element={<h1>About</h1>} />
         <Route path="/map" element={<h1>Map</h1>} />
