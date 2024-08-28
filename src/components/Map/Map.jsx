@@ -89,6 +89,13 @@ const PoiMarkers = (props) => {
     });
   };
 
+  const handleClick = (event) => {
+    if(!map) return;
+    if(!event.latLng) return;
+    console.log('marker clicked:', event.latLng.toString());
+    map.panTo(event.latLng);
+  };
+
   return (
     <>
       {props.pois.map((poi) => (
@@ -96,6 +103,7 @@ const PoiMarkers = (props) => {
           key={poi.key}
           position={poi.location}
           ref={(marker) => setMarkerRef(marker, poi.key)}
+          onClick={handleClick}
         >
           <Pin
             background={"#FBBC04"}
