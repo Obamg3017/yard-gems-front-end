@@ -35,6 +35,7 @@ export default [
       ],
       "react/prop-types": "off", 
       "react/no-unescaped-entities": "off",
+      "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }]
     },
   },
 ];

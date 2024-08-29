@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import toast from "react-hot-toast";
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
@@ -31,6 +32,55 @@ const locations = [
 ];
 
 function GoogleMap() {
+  const [clickedPosition, setClickedPosition] = useState(null);
+
+  const handleConfirm = (latLng) => {
+    console.log(`Location confirmed! ${latLng.lat}, ${latLng.lng}`);
+  };
+  const handleMapClick = (event) => {
+    if (!event.detail.latLng) return;
+
+    const latLng = event.detail.latLng; // Capture the latLng from the event
+    setClickedPosition(latLng);
+
+    // Dismiss existing toasts
+    toast.dismiss();
+
+    // Show toast notification
+    toast.custom(
+      () => (
+        <div
+          style={{
+            background: "white",
+            padding: "16px",
+            borderRadius: "8px",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>Confirm?</span>
+          <button
+            style={{
+              marginLeft: "10px",
+              padding: "8px 12px",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+            onClick={() => handleConfirm(latLng)} // Pass latLng directly
+          >
+            Confirm
+          </button>
+        </div>
+      ),
+      { duration: Infinity, position: "top-center" }
+    );
+  };
+
   return (
     <APIProvider
       apiKey={apiKey}
@@ -41,9 +91,11 @@ function GoogleMap() {
         mapId={mapId}
         style={{ width: "100vw", height: "90vh" }} // Set cursor style to pointer
         defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
-        onClick={(event) => {}} // Handle map click
+        onClick={(event) => {
+          handleMapClick(event);
+        }} // Handle map click
       >
-        <PoiMarkers pois={locations} />
+        <PoiMarkers pois={locations} clickedPosition={clickedPosition} />
       </Map>
     </APIProvider>
   );
@@ -98,6 +150,17 @@ const PoiMarkers = (props) => {
           />
         </AdvancedMarker>
       ))}
+      {props.clickedPosition && (
+        <>
+          <AdvancedMarker position={props.clickedPosition}>
+            <Pin
+              background={"#34A853"}
+              glyphColor={"#fff"}
+              borderColor={"#000"}
+            />
+          </AdvancedMarker>
+        </>
+      )}
     </>
   );
 };
