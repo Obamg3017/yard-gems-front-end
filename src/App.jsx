@@ -1,4 +1,4 @@
-import {  useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import NavBar from "./components/Navbar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import GoogleMap from "./components/Map/Map.jsx";
@@ -12,6 +12,8 @@ import { Toaster } from "react-hot-toast";
 import SignIn from "./components/Auth/SignIn/SignIn.jsx";
 import { getUserFromToken, signOut } from "../Services/auth.js";
 import { getUser } from "../Services/users.js";
+import YardSaleForm from "./components/YardSale/YardSaleForm";
+import Item from "./components/Item/Item.jsx";
 
 const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
@@ -26,15 +28,13 @@ const App = () => {
     };
 
     fetchUser();
-
   }, [userFromToken]);
 
   const handleSignout = async () => {
-    await signOut();  // Ensure signOut completes before updating the state
+    await signOut(); // Ensure signOut completes before updating the state
     setUserFromToken(null);
     setUserObject(null);
   };
-
 
   return (
     <div className="container">
@@ -45,9 +45,13 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/map" element={<GoogleMap user={userFromToken} />} />
         <Route path="/cart" element={<h1>Cart</h1>} />
-        <Route path="/item" element={<h1>Item</h1>} />
+        <Route path="/item" element={<Item userObject={userObject}/>} />
         <Route path="/signin" element={<SignIn setUser={setUserFromToken} />} />
         <Route path="/signup" element={<SignUp setUser={setUserFromToken} />} />
+        <Route
+          path="/create-yard-sale"
+          element={<YardSaleForm userId={userObject} />}
+        />
       </Routes>
       <Footer />
       <Toaster />
