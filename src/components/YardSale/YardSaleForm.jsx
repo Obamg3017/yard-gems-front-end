@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createYardSale } from '../../services/yard-sales'
 
-const YardSaleForm = ({ userId }) => {
+const YardSaleForm = ({ userObject }) => {
   const [yardSale, setYardSale] = useState({
     name: '',
     latitude: '',
@@ -25,10 +25,10 @@ const YardSaleForm = ({ userId }) => {
     try {
       const data = {
         ...yardSale,
-        owner: userId 
+        owner: userObject 
       };
-      await createYardSale(userId, data);
-      navigate('/select-location') // Navigate to the map selection page after form submission
+      await createYardSale(userObject, data);
+      navigate('/map') // Navigate to the map selection page after form submission
     } catch (error) {
       console.error("Failed to create yard sale:", error)
     }
