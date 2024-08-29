@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
-import { createItem } from '../../../Services/items.js'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { createItem } from "../../../Services/items.js";
 
-const Item = ({ userId }) => {
+const Item = ({ userObject }) => {
+  console.log(userObject);
   const [itemData, setItemData] = useState({
-    name: '',
-    description: '',
-    price: '',
-    quantity: '',
-    owner: userId 
+    name: "",
+    description: "",
+    price: "",
+    quantity: "",
   });
 
   const handleInputChange = (event) => {
@@ -20,11 +21,13 @@ const Item = ({ userId }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("hit handleSubmit");
     try {
-      const response = await createItem(itemData)
-      console.log('Item created:', response)
+      const response = await createItem(itemData, userObject.user._id);
+      console.log(userObject);
+      console.log("Item created:", response);
     } catch (error) {
-      console.error('Error creating item:', error)
+      console.error("Error creating item:", error);
     }
   };
 
@@ -34,27 +37,45 @@ const Item = ({ userId }) => {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input type="text" name="name" value={itemData.name} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="name"
+            value={itemData.name}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Description:
-          <textarea name="description" value={itemData.description} onChange={handleInputChange} />
+          <textarea
+            name="description"
+            value={itemData.description}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Price:
-          <input type="number" name="price" value={itemData.price} onChange={handleInputChange} />
+          <input
+            type="number"
+            name="price"
+            value={itemData.price}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Quantity:
-          <input type="number" name="quantity" value={itemData.quantity} onChange={handleInputChange} />
+          <input
+            type="number"
+            name="quantity"
+            value={itemData.quantity}
+            onChange={handleInputChange}
+          />
         </label>
-        <button type="submit">Submit</button>
+        <Link to="/profile">
+          <button type="submit">Submit</button>
+        </Link>
       </form>
     </div>
   );
-}
+};
 
-export default Item
-
-
-
+export default Item;

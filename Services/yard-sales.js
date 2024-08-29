@@ -2,7 +2,13 @@ import api from './apiConfig'
 
 export const createYardSale = async (userId, yardSaleData) => {
   try {
-    const response = await api.post(`/yard-sales/${userId}`, yardSaleData);
+    const token = localStorage.getItem("token");
+
+    const response = await api.post(`/yard-sales/${userId}`, yardSaleData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Error Getting yard-sales Data:", error)
