@@ -2,15 +2,8 @@ import { Link } from "react-router-dom";
 import { signOut } from "../../../Services/auth";
 import "./navbar.css";
 
-const NavBar = ({ user, setUser }) => {
-  const logout = async () => {
-    try {
-      const response = await signOut();
-      setUser(null);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const NavBar = ({ user, handleSignout, setUser }) => {
+  
   return (
     <nav>
       <ul className="mainnav">
@@ -29,13 +22,22 @@ const NavBar = ({ user, setUser }) => {
         <li>
           <Link to="/cart">Cart</Link>
         </li>
-        <li>
-          {user ? (
-            <button onClick={logout}>SignOut</button>
-          ) : (
-            <Link to="/signin">Signin</Link>
-          )}
-        </li>
+        {user ? (
+          <li>
+            <Link to="" onClick={handleSignout}>
+              SignOut
+            </Link>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/signin">Signin</Link>
+            </li>
+            <li>
+              <Link to="/signin">SignUp</Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

@@ -42,20 +42,14 @@ export const signOut = async () => {
   }
 };
 
-export const changePassword = async (passwords, user) => {
-  try {
-    const resp = await api.post("/");
-    return resp.data;
-  } catch (error) {
-    throw error;
-  }
+export const getUser = () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+  const user = JSON.parse(atob(token.split(".")[1]));
+  return user;
 };
 
-export const verifyUser = async () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    const res = await api.get("/verify");
-    return res.data;
-  }
-  return false;
+export const signout = () => {
+  localStorage.removeItem("token");
 };
+

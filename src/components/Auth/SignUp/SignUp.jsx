@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { signUp } from "../../../../services/auth";
+import { signUp } from "../../../../Services/auth";
 
 import "./signup.css";
 const SignUp = ({ setUser }) => {
@@ -27,7 +27,7 @@ const SignUp = ({ setUser }) => {
         <div className="input-container">
           <input
             type="text"
-            placeholder="JohnDow"
+            placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -36,7 +36,7 @@ const SignUp = ({ setUser }) => {
         <div className="input-container">
           <input
             type="password"
-            placeholder="Password"
+            placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

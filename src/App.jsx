@@ -10,20 +10,20 @@ import Profile from "./components/Profile/Profile.jsx";
 import SignUp from "./components/Auth/SignUp/SignUp.jsx";
 import { Toaster } from "react-hot-toast";
 import SignIn from "./components/Auth/SignIn/SignIn.jsx";
+import { getUser, signOut } from "../Services/auth.js";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     const user = await verifyUser();
-  //     user ? setUser(user) : setUser(null);
-  //   };
-  //   getUser();
-  // }, []);
+  const [user, setUser] = useState(getUser());
+  const handleSignout = () =>{
+    signOut()
+    setUser(null)
+  }
+
+
 
   return (
     <div className="container">
-      <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} handleSignout={handleSignout} />
       <Routes>
         <Route path="/" element={<LandingPage user={user} />} />
         <Route path="/profile" element={<Profile user={user} />} />
