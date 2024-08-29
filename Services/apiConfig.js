@@ -3,8 +3,8 @@ import axios from "axios"
 let apiUrl;
 
 const apiUrls = {
-  production: "www.yard-gems-api.heroku.com/api",
-  development: "http://localhost:3000/api",
+  production: "www.yard-gems-api.heroku.com/",
+  development: "http://localhost:3000/",
 };
 
 if (window.location.hostname === "localhost") {
