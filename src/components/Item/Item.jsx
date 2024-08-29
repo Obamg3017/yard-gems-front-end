@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { createItem } from "../../../Services/items.js";
 
 const Item = ({ userObject }) => {
-  console.log(userObject);
   const [itemData, setItemData] = useState({
     name: "",
     description: "",
@@ -23,8 +22,8 @@ const Item = ({ userObject }) => {
     event.preventDefault();
     console.log("hit handleSubmit");
     try {
-      const response = await createItem(itemData, userObject.user._id);
-      console.log(userObject);
+      const response = await createItem(itemData, userObject._id);
+      console.log(itemData);
       console.log("Item created:", response);
     } catch (error) {
       console.error("Error creating item:", error);
@@ -70,10 +69,11 @@ const Item = ({ userObject }) => {
             onChange={handleInputChange}
           />
         </label>
-        <Link to="/profile">
-          <button type="submit">Submit</button>
-        </Link>
+        <button type="submit">Submit</button>
       </form>
+      <Link to="/profile">
+        <button>Go to Profile</button>
+      </Link>
     </div>
   );
 };
