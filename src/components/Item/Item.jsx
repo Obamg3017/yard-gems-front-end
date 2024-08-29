@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { createItem } from '../../Services/items'
+import { createItem } from '../../../Services/items.js'
 
 const Item = ({ userId }) => {
   const [itemData, setItemData] = useState({
