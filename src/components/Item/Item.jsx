@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-import { createItem } from '../../../Services/items'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { createItem } from "../../../Services/items.js";
 
-const Item = ({ userId }) => {
+const Item = ({ userObject }) => {
+  console.log(userObject);
   const [itemData, setItemData] = useState({
-    name: '',
-    description: '',
-    price: '',
-    quantity: '',
-    owner: userId 
+    name: "",
+    description: "",
+    price: "",
+    quantity: "",
   });
 
   const handleInputChange = (event) => {
@@ -21,11 +21,13 @@ const Item = ({ userId }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("hit handleSubmit");
     try {
-      const response = await createItem(itemData)
-      console.log('Item created:', response)
+      const response = await createItem(itemData, userObject.user._id);
+      console.log(userObject);
+      console.log("Item created:", response);
     } catch (error) {
-      console.error('Error creating item:', error)
+      console.error("Error creating item:", error);
     }
   };
 
@@ -74,9 +76,6 @@ const Item = ({ userId }) => {
       </form>
     </div>
   );
-}
+};
 
-export default Item
-
-
-
+export default Item;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getItems } from "../../../Services/items";
 import "./profile.css"
 
-const Profile = ({ userId }) => {
+const Profile = ({ userObject }) => {
   const [items, setItems] = useState([]);
 
   // Fetch the user's items when the component mounts
@@ -11,23 +11,24 @@ const Profile = ({ userId }) => {
     const fetchItems = async () => {
       try {
         const userItems = await getItems();
-        // Filter items based on the userId
-        const filteredItems = userItems.filter((item) => item.owner === userId);
+        // Filter items based on the userObject
+        const filteredItems = userItems.filter((item) => item.owner === userObject);
         setItems(filteredItems);
+        console.log(items)
       } catch (error) {
         console.error("Error fetching items:", error);
       }
     };
 
     fetchItems();
-  }, [userId]);
+  }, [userObject]);
 
   return (
     <div>
       <h1>Welcome To Yard 💎</h1>
 
       {/* Button that links to the Items page */}
-      <Link to={`/items/${userId}`}>
+      <Link to={"/item"}>
         <button>Create Item</button>
       </Link>
 
