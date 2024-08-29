@@ -1,6 +1,8 @@
 import api from "./apiConfig";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
+
+
 export const signUp = async (credentials) => {
   try {
     const resp = await api.post("/auth/signup", credentials);
