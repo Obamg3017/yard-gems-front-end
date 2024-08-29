@@ -47,7 +47,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/map" element={<GoogleMap user={userFromToken} />} />
         <Route path="/cart" element={<h1>Cart</h1>} />
-        <Route path="/item" element={<Item />} />
+        <Route path="/items/:userId" element={<Item />} />
         <Route path="/signin" element={<SignIn setUser={setUserFromToken} />} />
         <Route path="/signup" element={<SignUp setUser={setUserFromToken} />} />
         <Route path="/create-yard-sale" element={<YardSaleForm userId={userObject} />} />

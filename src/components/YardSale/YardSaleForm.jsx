@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { createYardSale } from '../../services/yard-sales'
+import { createYardSale } from '../../../services/yard-sales'
 
 const YardSaleForm = ({ userObject }) => {
   const [yardSale, setYardSale] = useState({
