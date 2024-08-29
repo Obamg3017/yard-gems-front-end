@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { createItem } from '../../Services/items'
+import { Link } from 'react-router-dom';
+import { createItem } from '../../../Services/items'
 
 const Item = ({ userId }) => {
   const [itemData, setItemData] = useState({
@@ -34,21 +35,42 @@ const Item = ({ userId }) => {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input type="text" name="name" value={itemData.name} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="name"
+            value={itemData.name}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Description:
-          <textarea name="description" value={itemData.description} onChange={handleInputChange} />
+          <textarea
+            name="description"
+            value={itemData.description}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Price:
-          <input type="number" name="price" value={itemData.price} onChange={handleInputChange} />
+          <input
+            type="number"
+            name="price"
+            value={itemData.price}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Quantity:
-          <input type="number" name="quantity" value={itemData.quantity} onChange={handleInputChange} />
+          <input
+            type="number"
+            name="quantity"
+            value={itemData.quantity}
+            onChange={handleInputChange}
+          />
         </label>
-        <button type="submit">Submit</button>
+        <Link to="/profile">
+          <button type="submit">Submit</button>
+        </Link>
       </form>
     </div>
   );
