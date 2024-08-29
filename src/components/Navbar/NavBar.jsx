@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { signOut } from "../../../Services/auth";
 import "./navbar.css";
 
-const NavBar = ({ user, handleSignout, setUser }) => {
+const NavBar = ({ user, handleSignout }) => {
   
   return (
     <nav>
@@ -34,7 +33,7 @@ const NavBar = ({ user, handleSignout, setUser }) => {
               <Link to="/signin">Signin</Link>
             </li>
             <li>
-              <Link to="/signin">SignUp</Link>
+              <Link to="/signup">SignUp</Link>
             </li>
           </>
         )}
