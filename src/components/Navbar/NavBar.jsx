@@ -10,7 +10,7 @@ const NavBar = ({ user, handleSignout }) => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/users">Profile</Link>
+          <Link to="/profile">Profile</Link>
         </li>
         <li>
           <Link to="/about">About</Link>
