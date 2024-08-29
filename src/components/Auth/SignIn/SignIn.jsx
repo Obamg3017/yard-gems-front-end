@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { signIn } from "../../../../Services/auth";
@@ -46,7 +46,6 @@ const SignIn = ({ setUser }) => {
           Let's Go
         </button>
       </form>
-      <button className="home-button">Home</button>
     </div>
   );
 };

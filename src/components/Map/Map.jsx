@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
