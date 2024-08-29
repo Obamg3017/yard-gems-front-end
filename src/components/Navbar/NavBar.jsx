@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
-import "./navbar.css"
+import { Link } from "react-router-dom";
+import "./navbar.css";
 
-
-const NavBar = () => {
+const NavBar = ({ user, handleSignout }) => {
+  
   return (
-    <nav> 
-      <ul className='mainnav'>
+    <nav>
+      <ul className="mainnav">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -21,9 +21,25 @@ const NavBar = () => {
         <li>
           <Link to="/cart">Cart</Link>
         </li>
+        {user ? (
+          <li>
+            <Link to="" onClick={handleSignout}>
+              SignOut
+            </Link>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/signin">Signin</Link>
+            </li>
+            <li>
+              <Link to="/signup">SignUp</Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
 };
 
-export default NavBar
+export default NavBar;
