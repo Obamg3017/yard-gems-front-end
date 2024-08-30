@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import { getYardSales } from "../../../Services/yard-sales.js";
+import { createYardSale } from "../../../Services/yard-sales.js";
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
