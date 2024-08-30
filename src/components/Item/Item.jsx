@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { createItem } from "../../../Services/items.js";
 
-const Item = ({ userObject }) => {
+const Item = ({ userObject, setUserObject }) => {
   const [itemData, setItemData] = useState({
     name: "",
     description: "",
     price: "",
     quantity: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,9 +25,16 @@ const Item = ({ userObject }) => {
     event.preventDefault();
     console.log("hit handleSubmit");
     try {
-      const response = await createItem(itemData, userObject._id);
+      const newItem = await createItem(itemData, userObject._id);
       console.log(itemData);
-      console.log("Item created:", response);
+      console.log("Item created:", newItem);
+
+      // Update the userObject state
+      setUserObject(prevState => ({
+        ...prevState,
+        items: [...prevState.items, newItem]
+      }));
+      navigate('/profile')
     } catch (error) {
       console.error("Error creating item:", error);
     }

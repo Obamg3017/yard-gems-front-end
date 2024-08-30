@@ -14,6 +14,7 @@ import { getUserFromToken, signOut } from "../Services/auth.js";
 import { getUser } from "../Services/users.js";
 import YardSaleForm from "./components/YardSale/YardSaleForm";
 import Item from "./components/Item/Item.jsx";
+import GetPin from "./components/GetPin/GetPin.jsx";
 
 const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
@@ -36,6 +37,15 @@ const App = () => {
     setUserObject(null);
   };
 
+  const updateUserObject = async () => {
+    if (userFromToken && userFromToken._id) {
+      const user = await getUser(userFromToken._id);
+      console.log('setting user object')
+      setUserObject(user.data);
+    }
+  };
+
+
   return (
     <div className="container">
       <NavBar user={userFromToken} handleSignout={handleSignout} />
@@ -44,8 +54,9 @@ const App = () => {
         <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="/about" element={<About />} />
         <Route path="/map" element={<GoogleMap user={userFromToken} />} />
+        <Route path="/get-pin" element={<GetPin user={userFromToken} />} />
         <Route path="/cart" element={<h1>Cart</h1>} />
-        <Route path="/item" element={<Item userObject={userObject}/>} />
+        <Route path="/item" element={<Item userObject={userObject} setUserObject={setUserObject}/>} />
         <Route path="/signin" element={<SignIn setUser={setUserFromToken} />} />
         <Route path="/signup" element={<SignUp setUser={setUserFromToken} />} />
         <Route

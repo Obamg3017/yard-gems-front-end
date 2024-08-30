@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "./profile.css"
+import "./profile.css";
 
 const Profile = ({ userObject }) => {
-
-  console.log(userObject)
 
   return (
     <div>
@@ -16,7 +14,7 @@ const Profile = ({ userObject }) => {
       </Link>
 
       <h3>Your Items</h3>
-      {userObject.items ? (
+      {userObject?.items && userObject.items.length > 0 ? (
         <ul>
           {userObject.items.map((item) => (
             <li key={item._id}>
