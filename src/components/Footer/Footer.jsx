@@ -15,6 +15,20 @@ const Footer = () => {
           <Link to="/map">View Map</Link>
         </li>
       </ul>
+      <ul>
+        <li>
+          Site Created By:
+        </li>
+        <li>
+          Jonathan Coffens  
+        </li>
+        <li>
+          Olorunfemi Bamgbose
+        </li>
+        <li>
+          Rosevelt Foushee
+        </li>
+      </ul>
     </footer>
   );
 };

@@ -10,9 +10,6 @@ const NavBar = ({ user, handleSignout }) => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
             <Link to="/about">About</Link>
           </li>
           <li>
@@ -27,15 +24,10 @@ const NavBar = ({ user, handleSignout }) => {
               <li>
                 <Link to="/cart">Cart</Link>
               </li>
-              <li>
-                <Link to="" onClick={handleSignout}>
-                  SignOut
-                </Link>
-              </li>
             </>
           )}
         </div>
-        {!user && (
+        {!user ? (
           <div className="auth-link-container">
             <li>
               <Link to="/signin" className="auth-link">
@@ -45,6 +37,14 @@ const NavBar = ({ user, handleSignout }) => {
             <li>
               <Link to="/signup" className="auth-link">
                 SignUp
+              </Link>
+            </li>
+          </div>
+        ) : (
+          <div className="auth-link-container">
+            <li>
+              <Link to="" onClick={handleSignout}>
+                SignOut
               </Link>
             </li>
           </div>

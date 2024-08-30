@@ -5,10 +5,18 @@ body {
   }
   
   .container {
-    padding-top: 60px; /* Height of the navbar */
+  
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+min-height: 100vh;
     
   }
-  
+  .contentContainer{
+      padding-top: 60px; /* Height of the navbar */
+    width: 100%;
+    /* min-height: vh; */
+  }
   h1 {
     text-align: center;
     margin-top: 20px;
