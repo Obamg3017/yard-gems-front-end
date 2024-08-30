@@ -55,21 +55,53 @@ const App = () => {
   return (
     <div className="container">
       <NavBar user={userFromToken} handleSignout={handleSignout} />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/profile" element={<Profile userObject={userObject} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/map" element={<GoogleMap user={userFromToken} />} />
-        <Route path="/get-pin" element={<GetPin user={userFromToken} yardSale={yardSale} setYardSale={setYardSale}/>} />
-        <Route path="/cart" element={<h1>Cart</h1>} />
-        <Route path="/item" element={<Item userObject={userObject} setUserObject={setUserObject}/>} />
-        <Route path="/signin" element={<SignIn setUser={setUserFromToken} />} />
-        <Route path="/signup" element={<SignUp setUser={setUserFromToken} />} />
-        <Route
-          path="/create-yard-sale"
-          element={<YardSaleForm userId={userObject} yardSale={yardSale} setYardSale={setYardSale}/>}
-        />
-      </Routes>
+      <div className="contentContainer">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/profile"
+            element={<Profile userObject={userObject} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/map" element={<GoogleMap user={userFromToken} />} />
+          <Route
+            path="/get-pin"
+            element={
+              <GetPin
+                user={userFromToken}
+                yardSale={yardSale}
+                setYardSale={setYardSale}
+              />
+            }
+          />
+          <Route path="/cart" element={<h1>Cart</h1>} />
+          <Route
+            path="/item"
+            element={
+              <Item userObject={userObject} setUserObject={setUserObject} />
+            }
+          />
+          <Route
+            path="/signin"
+            element={<SignIn setUser={setUserFromToken} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignUp setUser={setUserFromToken} />}
+          />
+          <Route
+            path="/create-yard-sale"
+            element={
+              <YardSaleForm
+                userId={userObject}
+                yardSale={yardSale}
+                setYardSale={setYardSale}
+              />
+            }
+          />
+        </Routes>
+      </div>
+
       <Footer />
       <Toaster />
     </div>
