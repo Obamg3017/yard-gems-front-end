@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import { getYardSales } from "../../../Services/yard-sales.js";
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
@@ -11,6 +12,11 @@ import {
   useMap,
   Pin,
 } from "@vis.gl/react-google-maps";
+
+
+const yardSales = getYardSales()
+
+console.log(yardSales)
 
 const locations = [
   { key: "operaHouse", location: { lat: -33.8567844, lng: 151.213108 } },
@@ -31,6 +37,7 @@ const locations = [
 ];
 
 function GoogleMap() {
+
   return (
     <APIProvider
       apiKey={apiKey}
@@ -41,7 +48,8 @@ function GoogleMap() {
         mapId={mapId}
         style={{ width: "100vw", height: "90vh" }} // Set cursor style to pointer
         defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
-        onClick={(event) => {}} // Handle map click
+        onClick={(event) => {
+        }} // Handle map click
       >
         <PoiMarkers pois={locations} />
       </Map>
