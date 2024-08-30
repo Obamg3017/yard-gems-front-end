@@ -41,7 +41,7 @@ const App = () => {
       <NavBar user={userFromToken} handleSignout={handleSignout} />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/profile" element={<Profile user={userObject} />} />
+        <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="/about" element={<About />} />
         <Route path="/map" element={<GoogleMap user={userFromToken} />} />
         <Route path="/cart" element={<h1>Cart</h1>} />
