@@ -20,6 +20,7 @@ const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
   const [userObject, setUserObject] = useState(null);
   const [yardSale, setYardSale] = useState({
+    yardOwner: "",
     name: "",
     lat: "",
     lng: "",
@@ -66,7 +67,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp setUser={setUserFromToken} />} />
         <Route
           path="/create-yard-sale"
-          element={<YardSaleForm userId={userObject} yardSale={yardSale} setYardSale={setYardSale}/>}
+          element={<YardSaleForm userObject={userObject} yardSale={yardSale} setYardSale={setYardSale}/>}
         />
       </Routes>
       <Footer />
