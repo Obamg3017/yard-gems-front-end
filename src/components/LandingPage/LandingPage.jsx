@@ -1,27 +1,30 @@
 import React from "react";
 import './landing-page.css';
-
+import YouTubeVideo from "../YouTubeVideo/YouTubeVideo";
 
 const LandingPage = () => {
-  const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", /* and so on for all 50 states */];
+  const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", ];
 
   return (
     <div>
 
-      <h1>Welcome to Our Application</h1>
+      <YouTubeVideo videoId="fcc9RuSBgjo" />
+
+      <br></br>
+      <br></br>
+      <br></br>
+
+      <h1>Welcome to Yard 💎</h1>
       <p>"Everyone on the internet is your neighbor."</p>
-      
-      <ul className="state-list">
-        {states.map(state => <li key={state}>{state}</li>)}
-      </ul>
+
+      <br></br>
+      <br></br>
+
 
       
 
-      {/* Additional content can go here */}
-      <div className="additional-content">
-        <p>Explore more about our services.</p>
-        <button>Learn More</button>
-      </div>
+
+      
     </div>
   );
 };
