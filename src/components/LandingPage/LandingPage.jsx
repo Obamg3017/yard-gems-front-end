@@ -1,10 +1,30 @@
-import React from "react"
-import './landing-page.css'
+import React from "react";
+import './landing-page.css';
+import YouTubeVideo from "../YouTubeVideo/YouTubeVideo";
 
 const LandingPage = () => {
+  const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", ];
+
   return (
-    <div className="landing-page">
-      <h1>Welcome to Our Application</h1>
+    <div>
+
+      <YouTubeVideo videoId="fcc9RuSBgjo" />
+
+      <br></br>
+      <br></br>
+      <br></br>
+
+      <h1>Welcome to Yard 💎</h1>
+      <p>"Everyone on the internet is your neighbor."</p>
+
+      <br></br>
+      <br></br>
+
+
+      
+
+
+      
     </div>
   );
 };
