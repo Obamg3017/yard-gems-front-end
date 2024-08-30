@@ -31,7 +31,7 @@ const locations = [
   { key: "barangaroo", location: { lat: -33.8605523, lng: 151.1972205 } },
 ];
 
-function GoogleMap() {
+function GetPin() {
   const [clickedPosition, setClickedPosition] = useState(null);
 
   const handleConfirm = (latLng) => {
@@ -165,4 +165,4 @@ const PoiMarkers = (props) => {
   );
 };
 
-export default GoogleMap;
+export default GetPin;
