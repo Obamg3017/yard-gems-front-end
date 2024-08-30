@@ -5,7 +5,6 @@ const NavBar = ({ user, handleSignout }) => {
   return (
     <nav>
       <ul className="mainnav">
-        {/* Container for the left-side links */}
         <div className="left-links">
           <li>
             <Link to="/">Home</Link>
@@ -36,8 +35,6 @@ const NavBar = ({ user, handleSignout }) => {
             </>
           )}
         </div>
-
-        {/* Container for the right-side links */}
         {!user && (
           <div className="auth-link-container">
             <li>
