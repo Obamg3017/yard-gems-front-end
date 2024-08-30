@@ -31,11 +31,16 @@ const locations = [
   { key: "barangaroo", location: { lat: -33.8605523, lng: 151.1972205 } },
 ];
 
-function GetPin() {
+function GetPin({yardSale, setYardSale}) {
   const [clickedPosition, setClickedPosition] = useState(null);
 
   const handleConfirm = (latLng) => {
     console.log(`Location confirmed! ${latLng.lat}, ${latLng.lng}`);
+    setYardSale({
+        ...yardSale,
+        lat: latLng.lat,
+        lng: latLng.lng,
+      });
   };
   const handleMapClick = (event) => {
     if (!event.detail.latLng) return;

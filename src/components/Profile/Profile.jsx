@@ -12,6 +12,9 @@ const Profile = ({ userObject }) => {
       <Link to={"/item"}>
         <button>Create Item</button>
       </Link>
+      <Link to={"/create-yard-sale"}>
+        <button>Create Yard Sale</button>
+      </Link>
 
       <h3>Your Items</h3>
       {userObject?.items && userObject.items.length > 0 ? (

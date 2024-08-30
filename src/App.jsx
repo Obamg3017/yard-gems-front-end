@@ -19,6 +19,11 @@ import GetPin from "./components/GetPin/GetPin.jsx";
 const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
   const [userObject, setUserObject] = useState(null);
+  const [yardSale, setYardSale] = useState({
+    name: "",
+    lat: "",
+    lng: "",
+  });
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -54,14 +59,14 @@ const App = () => {
         <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="/about" element={<About />} />
         <Route path="/map" element={<GoogleMap user={userFromToken} />} />
-        <Route path="/get-pin" element={<GetPin user={userFromToken} />} />
+        <Route path="/get-pin" element={<GetPin user={userFromToken} yardSale={yardSale} setYardSale={setYardSale}/>} />
         <Route path="/cart" element={<h1>Cart</h1>} />
         <Route path="/item" element={<Item userObject={userObject} setUserObject={setUserObject}/>} />
         <Route path="/signin" element={<SignIn setUser={setUserFromToken} />} />
         <Route path="/signup" element={<SignUp setUser={setUserFromToken} />} />
         <Route
           path="/create-yard-sale"
-          element={<YardSaleForm userId={userObject} />}
+          element={<YardSaleForm userId={userObject} yardSale={yardSale} setYardSale={setYardSale}/>}
         />
       </Routes>
       <Footer />
