@@ -33,9 +33,14 @@ export const createItem = async (itemData, userId) => {
   }
 };
 
-export const updateItem = async (itemId, itemData) => {
+export const updateItem = async (userId, itemId, itemData) => {
   try {
-    const response = await api.put(`/items/${itemId}`, itemData);
+    const token = localStorage.getItem("token");
+    const response = await api.put(`/items/${userId}/${itemId}`, itemData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);

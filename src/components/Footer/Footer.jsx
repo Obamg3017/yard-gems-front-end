@@ -20,7 +20,7 @@ const Footer = () => {
           Site Created By:
         </li>
         <li>
-          Jonathan Coffens  
+          Jonathan Coffen  
         </li>
         <li>
           Olorunfemi Bamgbose

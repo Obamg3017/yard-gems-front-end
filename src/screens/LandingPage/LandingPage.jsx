@@ -1,6 +1,6 @@
 import React from "react";
 import './landing-page.css';
-import YouTubeVideo from "../YouTubeVideo/YouTubeVideo";
+import YouTubeVideo from '../../components/YouTubeVideo/YouTubeVideo.jsx'
 
 const LandingPage = () => {
   const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", ];
