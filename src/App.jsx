@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 import NavBar from "./components/Navbar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import GoogleMap from "./components/Map/Map.jsx";
+import GoogleMap from "./screens/Map/Map.jsx";
 
 import { Route, Routes } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage.jsx";
-import About from "./components/About/About.jsx";
-import Profile from "./components/Profile/Profile.jsx";
-import SignUp from "./components/Auth/SignUp/SignUp.jsx";
+import LandingPage from "./screens/LandingPage/LandingPage.jsx";
+import About from "./screens/About/About.jsx";
+import Profile from "./screens/Profile/Profile.jsx";
+import SignUp from "./screens/Auth/SignUp/SignUp.jsx";
 import { Toaster } from "react-hot-toast";
-import SignIn from "./components/Auth/SignIn/SignIn.jsx";
+import SignIn from "./screens/Auth/SignIn/SignIn.jsx";
 import { getUserFromToken, signOut } from "../Services/auth.js";
 import { getUser } from "../Services/users.js";
-import YardSaleForm from "./components/YardSale/YardSaleForm";
-import Item from "./components/Item/Item.jsx";
-import GetPin from "./components/GetPin/GetPin.jsx";
+import YardSaleForm from "./screens/YardSaleForm/YardSaleForm.jsx";
+import ItemForm from "./screens/ItemForm/ItemForm.jsx";
+import GetPin from "./screens/GetPin/GetPin.jsx";
 
 
 const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
   const [userObject, setUserObject] = useState(null);
   const [yardSale, setYardSale] = useState({
+    yardOwner: "",
     name: "",
     lat: "",
     lng: "",
@@ -38,7 +39,7 @@ const App = () => {
   }, [userFromToken]);
 
   const handleSignout = async () => {
-    await signOut(); // Ensure signOut completes before updating the state
+    await signOut(); 
     setUserFromToken(null);
     setUserObject(null);
   };
@@ -60,7 +61,7 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/profile"
-            element={<Profile userObject={userObject} />}
+            element={<Profile userObject={userObject} setUserObject={setUserObject}/>}
           />
           <Route path="/about" element={<About />} />
           <Route path="/map" element={<GoogleMap user={userFromToken} />} />
@@ -76,9 +77,9 @@ const App = () => {
           />
           <Route path="/cart" element={<h1>Cart</h1>} />
           <Route
-            path="/item"
+            path="/item-form"
             element={
-              <Item userObject={userObject} setUserObject={setUserObject} />
+              <ItemForm userObject={userObject} setUserObject={setUserObject} />
             }
           />
           <Route

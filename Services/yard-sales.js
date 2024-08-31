@@ -1,8 +1,9 @@
 import api from './apiConfig'
 
-export const createYardSale = async (userId, yardSaleData) => {
+export const createYardSale = async (yardSaleData) => {
   try {
     const token = localStorage.getItem("token");
+    const userId = yardSaleData.yardOwner
 
     const response = await api.post(`/yard-sales/${userId}`, yardSaleData, {
       headers: {
@@ -11,7 +12,7 @@ export const createYardSale = async (userId, yardSaleData) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error Getting yard-sales Data:", error)
+    console.error("Error Creating yard-sales Data:", error)
   }
 };
 
