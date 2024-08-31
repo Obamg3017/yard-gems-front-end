@@ -86,7 +86,7 @@ function EditItem({ item, userObject, setUserObject, setItemToEdit, handleDelete
           />
         </label>
         <button type="submit">Submit</button>
-        <button onClick={() => {handleDelete(item._id)}}>Delete</button>
+        <button type="button" onClick={() => {handleDelete(item._id)}}>Delete</button>
       </form>
   );
 }

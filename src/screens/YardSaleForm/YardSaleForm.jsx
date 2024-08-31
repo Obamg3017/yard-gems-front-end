@@ -5,21 +5,21 @@ const YardSaleForm = ({ userObject, yardSale, setYardSale }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userObject && userObject._id) {
+    if (userObject && userObject._id && !yardSale.yardOwner) {
+      // Only set the yardOwner if it's not already set
       setYardSale((prevYardSale) => ({
         ...prevYardSale,
         yardOwner: userObject._id,
       }));
     }
-  }, [userObject, setYardSale]);
+  }, [userObject, yardSale, setYardSale]);
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setYardSale({
-      ...yardSale,
+    setYardSale((prevYardSale) => ({
+      ...prevYardSale,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -35,7 +35,7 @@ const YardSaleForm = ({ userObject, yardSale, setYardSale }) => {
           <input
             type="text"
             name="name"
-            value={yardSale.name}
+            value={yardSale.name || ""}
             onChange={handleChange}
           />
         </label>
