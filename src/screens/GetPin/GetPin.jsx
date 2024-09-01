@@ -27,18 +27,36 @@ let locations = yardSales.map((yardSale) => {
 
 function GetPin({yardSale, setYardSale}) {
   const [clickedPosition, setClickedPosition] = useState(null);
+  const [confirming, setConfirming] = useState(false);
+
+  useEffect(() => {
+    if (confirming && yardSale.lat && yardSale.lng) {
+      createYardSale(yardSale)
+        .then(() => {
+          toast.success("Yard sale created successfully!");
+        })
+        .catch((error) => {
+          toast.error("Failed to create yard sale");
+          console.error(error);
+        })
+        .finally(() => {
+          setConfirming(false); // Reset confirming state
+        });
+    }
+  }, [yardSale, confirming]);
 
   const handleConfirm = (latLng) => {
     console.log(`Location confirmed! ${latLng.lat}, ${latLng.lng}`);
     setYardSale({
-        ...yardSale,
-        lat: latLng.lat,
-        lng: latLng.lng,
-      });
-
-
-    createYardSale(yardSale)
+      ...yardSale,
+      lat: latLng.lat,
+      lng: latLng.lng,
+    });
+    setConfirming(true); // Trigger useEffect after setting the state
+    toast.dismiss();
   };
+
+
   const handleMapClick = (event) => {
     if (!event.detail.latLng) return;
 

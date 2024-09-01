@@ -16,7 +16,6 @@ import YardSaleForm from "./screens/YardSaleForm/YardSaleForm.jsx";
 import ItemForm from "./screens/ItemForm/ItemForm.jsx";
 import GetPin from "./screens/GetPin/GetPin.jsx";
 
-
 const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
   const [userObject, setUserObject] = useState(null);
@@ -32,6 +31,11 @@ const App = () => {
       if (userFromToken && userFromToken._id) {
         const user = await getUser(userFromToken._id);
         setUserObject(user.data);
+        // Set the yardOwner in yardSale state
+        setYardSale((prevYardSale) => ({
+          ...prevYardSale,
+          yardOwner: user.data._id,
+        }));
       }
     };
 
@@ -39,7 +43,7 @@ const App = () => {
   }, [userFromToken]);
 
   const handleSignout = async () => {
-    await signOut(); 
+    await signOut();
     setUserFromToken(null);
     setUserObject(null);
   };
@@ -47,11 +51,10 @@ const App = () => {
   const updateUserObject = async () => {
     if (userFromToken && userFromToken._id) {
       const user = await getUser(userFromToken._id);
-      console.log('setting user object')
+      console.log("setting user object");
       setUserObject(user.data);
     }
   };
-
 
   return (
     <div className="container">
@@ -61,7 +64,9 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/profile"
-            element={<Profile userObject={userObject} setUserObject={setUserObject}/>}
+            element={
+              <Profile userObject={userObject} setUserObject={setUserObject} />
+            }
           />
           <Route path="/about" element={<About />} />
           <Route path="/map" element={<GoogleMap user={userFromToken} />} />
