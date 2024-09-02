@@ -1,0 +1,59 @@
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.about-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.team-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.team-info .social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: #000;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #47bae059; /* LinkedIn blue */
+}
+
+
+.main-div{
+    color: #5c5454;
+}
+
+p{
+    font-size: larger;
+}
