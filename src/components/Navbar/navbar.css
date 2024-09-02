@@ -6,6 +6,7 @@ nav {
     width: 100%;
     padding: 10px 0;
     z-index: 1000;
+
   }
   
   .mainnav {
@@ -45,3 +46,9 @@ nav {
     margin-left: auto; 
   }
   
+  .landing-page-nav {
+    background-color: black ; 
+    border-bottom: 2px solid white; 
+    
+    
+  }
