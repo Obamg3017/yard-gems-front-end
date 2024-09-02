@@ -79,19 +79,19 @@ const About = () => {
           <div className="team-info">
             <h3>Olorunfemi Bamgbose</h3>
             <p>
-              I'm Femi, a problem solver at heart with a background in
-              underwriting that has deeply influenced my journey as a software
-              developer. My passion lies in tackling complex challenges with
-              dedication and resilience, which I've honed through experience in
-              team collaboration and developing insurance applications. I'm
-              committed to continuous growth, always seeking out new
-              technologies and methodologies to enhance my skills. Outside of
-              coding, I’m an avid sports enthusiast, finding joy in activities
+              Femi is a problem solver at heart with a background in
+              underwriting that has deeply influenced his journey as a software
+              developer. His passion lies in tackling complex challenges with
+              dedication and resilience, which he has honed through experience
+              in team collaboration and developing insurance applications. Femi
+              is committed to continuous growth, always seeking out new
+              technologies and methodologies to enhance his skills. Outside of
+              coding, he is an avid sports enthusiast, finding joy in activities
               like biking, hiking, and anything that offers adventure. Whether
-              I'm debugging a tough issue or navigating a mountain trail, I
-              bring the same level of adaptability and problem-solving to every
-              challenge. I see every obstacle as a chance to grow, and I'm eager
-              to keep pushing the boundaries of what's possible.
+              debugging a tough issue or navigating a mountain trail, Femi
+              brings the same level of adaptability and problem-solving to every
+              challenge. Every obstacle as a chance to grow, and he is eager to
+              keep pushing the boundaries of what's possible.
             </p>
             <div className="social-icons">
               <a
@@ -121,9 +121,14 @@ const About = () => {
           <div className="team-info">
             <h3>Rosevelt Foushee</h3>
             <p>
-              Innovative, slow to fully grasp new concepts, but very committed.
-              From Washington DC, an electrical technical background, new to the
-              tech world, and hoping for new beginnings.
+              Rosevelt Foushee is an emerging software developer with a
+              background in electrical technology. Hailing from Washington DC,
+              he approaches the tech world with a unique blend of innovation and
+              commitment. He takes his time to fully grasp new concepts ensuring
+              a solid understanding of the fundamentals, Rosevelt’s dedication
+              to continuous learning drives him forward. Eager for new
+              beginnings, he embraces each challenge as an opportunity to grow
+              and contribute meaningfully to the tech community.
             </p>
             <div className="social-icons">
               <a
