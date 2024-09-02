@@ -35,6 +35,7 @@ const App = () => {
         // Set the yardOwner in yardSale state
         setYardSale((prevYardSale) => ({
           ...prevYardSale,
+         
           yardOwner: user.data._id,
         }));
       }
@@ -56,7 +57,7 @@ const App = () => {
       setUserObject(user.data);
     }
   };
-
+console.log(userObject)
   return (
     <div className="container">
       <NavBar user={userFromToken} handleSignout={handleSignout} />
@@ -90,7 +91,7 @@ const App = () => {
               />
             }
           />
-          <Route path="/yard-sale" element={<DisplayYardSale yardSale={yardSale}/>} />
+          <Route path="/yard-sale" element={<DisplayYardSale userObject={userObject} yardSale={yardSale}/>} />
 
           <Route path="/cart" element={<h1>Cart</h1>} />
           <Route

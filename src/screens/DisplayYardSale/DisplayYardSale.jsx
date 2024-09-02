@@ -1,30 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { getYardSale } from '../../../Services/yard-sales';
+import React, { useState, useEffect } from "react";
+import { getYardSale } from "../../../Services/yard-sales";
 
-function DisplayYardSale({ yardSale }) {
-  const [yardSaleData, setYardSaleData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchYardSale = async () => {
-      try {
-        const data = await getYardSale(yardSale.yardOwner);
-        setYardSaleData(data);
-      } catch (error) {
-        console.error('Failed to fetch yard sale data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchYardSale();
-  }, [yardSale.yardOwner]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!yardSaleData) {
+function DisplayYardSale({ userObject }) {
+  console.log(userObject);
+  if (!userObject || !userObject.yardSale) {
     return <div>No yard sale data found.</div>;
   }
 
@@ -34,7 +13,7 @@ function DisplayYardSale({ yardSale }) {
       <h3>Your Items</h3>
       {/* Display yard sale data */}
       <h3>Yard Sales in Your Area</h3>
-      <p>{yardSaleData.name}</p>
+      <p>{userObject.yardSale.name}</p>
       {/* Add more fields as needed */}
     </div>
   );
