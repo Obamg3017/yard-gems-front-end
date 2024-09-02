@@ -15,6 +15,7 @@ import { getUser } from "../Services/users.js";
 import YardSaleForm from "./screens/YardSaleForm/YardSaleForm.jsx";
 import ItemForm from "./screens/ItemForm/ItemForm.jsx";
 import GetPin from "./screens/GetPin/GetPin.jsx";
+import DisplayYardSale from "./screens/DisplayYardSale/DisplayYardSale.jsx";
 
 const App = () => {
   const [userFromToken, setUserFromToken] = useState(getUserFromToken());
@@ -69,7 +70,16 @@ const App = () => {
             }
           />
           <Route path="/about" element={<About />} />
-          <Route path="/map" element={<GoogleMap user={userFromToken} />} />
+          <Route
+            path="/map"
+            element={
+              <GoogleMap
+                user={userFromToken}
+                yardSale={yardSale}
+                setYardSale={setYardSale}
+              />
+            }
+          />
           <Route
             path="/get-pin"
             element={
@@ -80,6 +90,8 @@ const App = () => {
               />
             }
           />
+          <Route path="/yard-sale" element={<DisplayYardSale yardSale={yardSale}/>} />
+
           <Route path="/cart" element={<h1>Cart</h1>} />
           <Route
             path="/item-form"

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import { getYardSales } from "../../../Services/yard-sales.js";
+import { useNavigate } from "react-router-dom";
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
@@ -24,7 +25,7 @@ let locations = yardSales.map((yardSale) => {
   })
 })
 
-function GoogleMap() {
+function GoogleMap({yardSale, setYardSale}) {
 
   return (
     <APIProvider
@@ -39,7 +40,7 @@ function GoogleMap() {
         onClick={(event) => {
         }} // Handle map click
       >
-        <PoiMarkers pois={locations} />
+        <PoiMarkers pois={locations} yardSale={yardSale} setYardSale={setYardSale}/>
       </Map>
     </APIProvider>
   );
@@ -49,6 +50,10 @@ const PoiMarkers = (props) => {
   const map = useMap();
   const [markers, setMarkers] = useState({});
   const clusterer = useRef(null);
+  const navigate = useNavigate();
+  const [pinClicked, setPinClicked] = useState(false);
+
+
 
   // Initialize MarkerClusterer, if the map has changed
   useEffect(() => {
@@ -79,6 +84,35 @@ const PoiMarkers = (props) => {
     });
   };
 
+  useEffect(() => {
+    if(pinClicked) {
+      navigate('/yard-sale')
+    }
+    setPinClicked(false)
+  }, [navigate, pinClicked]);
+
+  const handleMarkerClick = (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+
+    // Find the yard sale that matches the clicked location
+    const matchingYardSale = props.pois.find(poi => 
+      poi.location.lat === lat && poi.location.lng === lng
+    );
+
+    if (matchingYardSale) {
+      console.log('Matching Yard Sale:', matchingYardSale);
+      props.setYardSale({
+        ...props.yardSale,
+        yardOwner: matchingYardSale.key
+      });
+
+      setPinClicked(true)
+    } else {
+      console.log('No matching yard sale found.');
+    }
+  };
+
   return (
     <>
       {props.pois.map((poi) => (
@@ -86,6 +120,8 @@ const PoiMarkers = (props) => {
           key={poi.key}
           position={poi.location}
           ref={(marker) => setMarkerRef(marker, poi.key)}
+          onClick={(event) => handleMarkerClick(event)} // Pass the marker instance directly
+
         >
           <Pin
             background={"#FBBC04"}
