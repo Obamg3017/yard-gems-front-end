@@ -22,6 +22,7 @@ footer {
   footer li {
     margin: 0 15px;
     color: white;
+    font-weight: bolder;
   }
   
   .footer {
@@ -39,4 +40,8 @@ footer {
   .landing-page-footer {
     background-color: transparent; /* Transparent background for landing page footer */
     border-top: 2px solid white; /* White line above footer */
+  }
+  
+  a{
+    color: white;
   }
