@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import { getYardSales } from "../../../Services/yard-sales.js";
-import { createYardSale } from "../../../Services/yard-sales.js";
+import { useNavigate } from "react-router-dom";
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
@@ -15,29 +15,17 @@ import {
 } from "@vis.gl/react-google-maps";
 
 
-const yardSales = getYardSales()
+const yardSales = await getYardSales()
 
-console.log(yardSales)
+let locations = yardSales.map((yardSale) => {
+  return ({
+    key: yardSale._id,
+    name: yardSale.name,
+    location: {lat: yardSale.lat, lng: yardSale.lng},
+  })
+})
 
-const locations = [
-  { key: "operaHouse", location: { lat: -33.8567844, lng: 151.213108 } },
-  { key: "tarongaZoo", location: { lat: -33.8472767, lng: 151.2188164 } },
-  { key: "manlyBeach", location: { lat: -33.8209738, lng: 151.2563253 } },
-  { key: "hyderPark", location: { lat: -33.8690081, lng: 151.2052393 } },
-  { key: "theRocks", location: { lat: -33.8587568, lng: 151.2058246 } },
-  { key: "circularQuay", location: { lat: -33.858761, lng: 151.2055688 } },
-  { key: "harbourBridge", location: { lat: -33.852228, lng: 151.2038374 } },
-  { key: "kingsCross", location: { lat: -33.8737375, lng: 151.222569 } },
-  { key: "botanicGardens", location: { lat: -33.864167, lng: 151.216387 } },
-  { key: "museumOfSydney", location: { lat: -33.8636005, lng: 151.2092542 } },
-  { key: "maritimeMuseum", location: { lat: -33.869395, lng: 151.198648 } },
-  { key: "kingStreetWharf", location: { lat: -33.8665445, lng: 151.1989808 } },
-  { key: "aquarium", location: { lat: -33.869627, lng: 151.202146 } },
-  { key: "darlingHarbour", location: { lat: -33.87488, lng: 151.1987113 } },
-  { key: "barangaroo", location: { lat: -33.8605523, lng: 151.1972205 } },
-];
-
-function GoogleMap() {
+function GoogleMap({yardSale, setYardSale}) {
 
   return (
     <APIProvider
@@ -52,7 +40,7 @@ function GoogleMap() {
         onClick={(event) => {
         }} // Handle map click
       >
-        <PoiMarkers pois={locations} />
+        <PoiMarkers pois={locations} yardSale={yardSale} setYardSale={setYardSale}/>
       </Map>
     </APIProvider>
   );
@@ -62,6 +50,10 @@ const PoiMarkers = (props) => {
   const map = useMap();
   const [markers, setMarkers] = useState({});
   const clusterer = useRef(null);
+  const navigate = useNavigate();
+  const [pinClicked, setPinClicked] = useState(false);
+
+
 
   // Initialize MarkerClusterer, if the map has changed
   useEffect(() => {
@@ -92,6 +84,35 @@ const PoiMarkers = (props) => {
     });
   };
 
+  useEffect(() => {
+    if(pinClicked) {
+      navigate('/yard-sale')
+    }
+    setPinClicked(false)
+  }, [navigate, pinClicked]);
+
+  const handleMarkerClick = (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+
+    // Find the yard sale that matches the clicked location
+    const matchingYardSale = props.pois.find(poi => 
+      poi.location.lat === lat && poi.location.lng === lng
+    );
+
+    if (matchingYardSale) {
+      console.log('Matching Yard Sale:', matchingYardSale);
+      props.setYardSale({
+        ...props.yardSale,
+        yardOwner: matchingYardSale.key
+      });
+
+      setPinClicked(true)
+    } else {
+      console.log('No matching yard sale found.');
+    }
+  };
+
   return (
     <>
       {props.pois.map((poi) => (
@@ -99,6 +120,8 @@ const PoiMarkers = (props) => {
           key={poi.key}
           position={poi.location}
           ref={(marker) => setMarkerRef(marker, poi.key)}
+          onClick={(event) => handleMarkerClick(event)} // Pass the marker instance directly
+
         >
           <Pin
             background={"#FBBC04"}

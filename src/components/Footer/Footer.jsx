@@ -16,10 +16,18 @@ const Footer = ({ isLandingPage }) => {
         </li>
       </ul>
       <ul>
-        <li>Site Created By:</li>
-        <li>Jonathan Coffens</li>
-        <li>Olorunfemi Bamgbose</li>
-        <li>Rosevelt Foushee</li>
+        <li>
+          Site Created By:
+        </li>
+        <li>
+          Jonathan Coffen  
+        </li>
+        <li>
+          Olorunfemi Bamgbose
+        </li>
+        <li>
+          Rosevelt Foushee
+        </li>
       </ul>
     </footer>
   );

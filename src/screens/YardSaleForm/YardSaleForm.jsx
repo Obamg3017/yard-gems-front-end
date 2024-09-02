@@ -1,42 +1,41 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createYardSale } from "../../../Services/yard-sales";
+import { useEffect } from "react";
 
 const YardSaleForm = ({ userObject, yardSale, setYardSale }) => {
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userObject && userObject._id && !yardSale.yardOwner) {
+      // Only set the yardOwner if it's not already set
+      setYardSale((prevYardSale) => ({
+        ...prevYardSale,
+        yardOwner: userObject._id,
+      }));
+    }
+  }, [userObject, yardSale, setYardSale]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setYardSale({
-      ...yardSale,
+    setYardSale((prevYardSale) => ({
+      ...prevYardSale,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const data = {
-        ...yardSale,
-        owner: userObject,
-      };
-      await createYardSale(userObject, data);
-      navigate("/get-pin"); // Navigate to the map selection page after form submission
-    } catch (error) {
-      console.error("Failed to create yard sale:", error);
-    }
+    navigate("/get-pin"); // Navigate to the map selection page after form submission
   };
 
   return (
-    <div style={{marginTop: '150px'}}>
+    <div style={{ marginTop: "150px" }}>
       <form onSubmit={handleSubmit}>
         <label>
           Yard Sale Name:
           <input
             type="text"
             name="name"
-            value={yardSale.name}
+            value={yardSale.name || ""}
             onChange={handleChange}
           />
         </label>
