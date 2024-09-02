@@ -3,7 +3,7 @@ import NavBar from "./components/Navbar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import GoogleMap from "./screens/Map/Map.jsx";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom"; // Import useLocation
 import LandingPage from "./screens/LandingPage/LandingPage.jsx";
 import About from "./screens/About/About.jsx";
 import Profile from "./screens/Profile/Profile.jsx";
@@ -26,6 +26,8 @@ const App = () => {
     lat: "",
     lng: "",
   });
+
+  const location = useLocation(); // Get the current location
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -52,14 +54,16 @@ const App = () => {
   const updateUserObject = async () => {
     if (userFromToken && userFromToken._id) {
       const user = await getUser(userFromToken._id);
-      console.log("setting user object");
       setUserObject(user.data);
     }
   };
 
+  // Check if the current path is the landing page
+  const isLandingPage = location.pathname === "/";
+
   return (
     <div className="container">
-      <NavBar user={userFromToken} handleSignout={handleSignout} />
+      <NavBar user={userFromToken} handleSignout={handleSignout} isLandingPage={isLandingPage} />
       <div className="contentContainer">
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -119,8 +123,7 @@ const App = () => {
           />
         </Routes>
       </div>
-
-      <Footer />
+      <Footer isLandingPage={isLandingPage} />
       <Toaster />
     </div>
   );

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
-const NavBar = ({ user, handleSignout }) => {
+const NavBar = ({ user, handleSignout, isLandingPage }) => {
   return (
-    <nav>
+    <nav className={isLandingPage ? "navbar landing-page-nav" : "navbar"}>
       <ul className="mainnav">
         <div className="left-links">
           <li>
