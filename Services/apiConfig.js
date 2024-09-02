@@ -3,7 +3,7 @@ import axios from "axios"
 let apiUrl;
 
 const apiUrls = {
-  production: "www.yard-gems-api.heroku.com/",
+  production: " https://yard-sale-backend-0b4ffdf8283f.herokuapp.com/",
   development: "http://localhost:3000/",
 };
 
