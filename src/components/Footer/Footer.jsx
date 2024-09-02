@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
-import "./footer.css"
+import { Link } from "react-router-dom";
+import "./footer.css";
 
-const Footer = () => {
+const Footer = ({ isLandingPage }) => {
   return (
-    <footer>
+    <footer className={isLandingPage ? "footer landing-page-footer" : "footer"}>
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -33,4 +33,4 @@ const Footer = () => {
   );
 };
 
-export default Footer
+export default Footer;
