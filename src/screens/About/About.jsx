@@ -90,7 +90,7 @@ const About = () => {
               like biking, hiking, and anything that offers adventure. Whether
               debugging a tough issue or navigating a mountain trail, Femi
               brings the same level of adaptability and problem-solving to every
-              challenge. Every obstacle as a chance to grow, and he is eager to
+              challenge. Every obstacle is a chance to grow, and he is eager to
               keep pushing the boundaries of what's possible.
             </p>
             <div className="social-icons">
