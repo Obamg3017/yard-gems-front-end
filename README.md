@@ -76,4 +76,4 @@ Yard Gems is a proof of concept for a virtual yard sale platform that allows use
 * Improve Styling
 * Finish functionality for adding items to yard sales 
 * Implement ability for users to comminicate and negotiate with each other
-* Implmeent Stripe
+* Implement Stripe
