@@ -16,13 +16,8 @@ const LandingPage = () => {
       }
     };
 
-    
-    const handleFadeInOutText = () => {
-      belowTextRef.current.classList.add("fade-in-out");
-    };
 
     videoElement.addEventListener('ended', handleVideoEnd);
-    handleFadeInOutText() 
 
     return () => {
       videoElement.removeEventListener('ended', handleVideoEnd);
@@ -46,7 +41,7 @@ const LandingPage = () => {
 
       
       <div className="content-section">
-        <h1>Welcome to Yard 💎</h1>
+        <h1>Welcome to Yard Gems 💎</h1>
         <p>"Everyone on the internet is your neighbor."</p>
         <p> Your one-stop destination to discover the best yard sales in your area!
           Whether you're hunting for hidden treasures, vintage finds, or just great bargains,
@@ -84,9 +79,6 @@ const LandingPage = () => {
           <source src="https://storage.googleapis.com/yardgems/Yard-gems-rotate2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="fade-in-out-text" ref={belowTextRef}>
-          This has nothing to do with our App, Just thought it was cool.
-        </div>
       </div>
     </div>
   );
