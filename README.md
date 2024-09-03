@@ -16,7 +16,7 @@ Yard Gems is a proof of concept for a virtual yard sale platform that allows use
 
 #### How To Get Started:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visit: 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visit: https://yard-gems-front-end.vercel.app/
 
 * Familiarize yourself with the site.
 * Browse the pages in the navbar and explore the map
