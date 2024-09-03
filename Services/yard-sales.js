@@ -1,11 +1,19 @@
 import api from './apiConfig'
+import { getUser } from './users';
 
-export const createYardSale = async (userId, yardSaleData) => {
+export const createYardSale = async (yardSaleData) => {
   try {
-    const response = await api.post(`/yard-sales/${userId}`, yardSaleData);
+    const token = localStorage.getItem("token");
+    const userId = yardSaleData.yardOwner
+
+    const response = await api.post(`/yard-sales/${userId}`, yardSaleData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error("Error Getting yard-sales Data:", error)
+    console.error("Error Creating yard-sales Data:", error)
   }
 };
 
@@ -21,6 +29,16 @@ export const getYardSales = async () => {
 export const getYardSale = async (yardId) => {
   try {
     const response = await api.get(`/yard-sales/${yardId}`)
+    return response.data;
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+export const getYardSaleByOwnerId = async (yardOwnerId) => {
+  try {
+    const response = await getUser(yardOwnerId)
+    console.log(response)
     return response.data;
   } catch (error) {
     console.error(error)

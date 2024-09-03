@@ -1,14 +1,18 @@
 footer {
-    position: fixed;
+    position: relative;
     background-color:#476352;
     bottom: 0;
     left: 0;
     width: 100%;
     padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
   }
   
   footer ul {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
     list-style-type: none;
     margin: 0;
@@ -18,15 +22,26 @@ footer {
   footer li {
     margin: 0 15px;
     color: white;
+    font-weight: bolder;
   }
   
-  footer a {
+  .footer {
+    position: relative;
+    background-color: #476352;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: none; /* Default style: no line */
+  }
+  
+  .landing-page-footer {
+    background-color: transparent; /* Transparent background for landing page footer */
+    border-top: 2px solid white; /* White line above footer */
+  }
+  
+  a{
     color: white;
-    text-decoration: none;
-    font-size: 16px;
   }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-   

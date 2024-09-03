@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
-import "./footer.css"
+import { Link } from "react-router-dom";
+import "./footer.css";
 
-const Footer = () => {
+const Footer = ({ isLandingPage }) => {
   return (
-    <footer>
+    <footer className={isLandingPage ? "footer landing-page-footer" : "footer"}>
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -15,8 +15,22 @@ const Footer = () => {
           <Link to="/map">View Map</Link>
         </li>
       </ul>
+      <ul>
+        <li>
+          Site Created By:
+        </li>
+        <li>
+          Jonathan Coffen  
+        </li>
+        <li>
+          Olorunfemi Bamgbose
+        </li>
+        <li>
+          Rosevelt Foushee
+        </li>
+      </ul>
     </footer>
   );
 };
 
-export default Footer
+export default Footer;
