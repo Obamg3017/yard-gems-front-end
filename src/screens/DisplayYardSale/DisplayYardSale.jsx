@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getYardSale } from '../../../Services/yard-sales';
+import React, { useState, useEffect } from "react";
+import { getYardSale } from "../../../Services/yard-sales";
 
 function DisplayYardSale({ yardSale }) {
   const [yardSaleData, setYardSaleData] = useState(null);
@@ -9,9 +9,10 @@ function DisplayYardSale({ yardSale }) {
     const fetchYardSale = async () => {
       try {
         const data = await getYardSale(yardSale.yardOwner);
+        console.log(data);
         setYardSaleData(data);
       } catch (error) {
-        console.error('Failed to fetch yard sale data:', error);
+        console.error("Failed to fetch yard sale data:", error);
       } finally {
         setLoading(false);
       }
@@ -30,12 +31,22 @@ function DisplayYardSale({ yardSale }) {
 
   return (
     <div>
-      <h1>Welcome To Yard 💎</h1>
-      <h3>Your Items</h3>
-      {/* Display yard sale data */}
-      <h3>Yard Sales in Your Area</h3>
-      <p>{yardSaleData.name}</p>
-      {/* Add more fields as needed */}
+      <h1>Welcome To the {yardSaleData.yardSale.name} Yard Sale</h1>
+      {yardSaleData?.yardSale.itemsForSale ? (
+        <ul>
+          {yardSaleData.yardSale.itemsForSale.map((item) => (
+            <li key={item._id}>
+              <strong>{item.name}</strong> <br />${item.price}
+              <br />
+              {item.description}
+              <br />
+              Quantity: {item.quantity}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No items added yet.</p>
+      )}
     </div>
   );
 }

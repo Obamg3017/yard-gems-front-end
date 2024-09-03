@@ -1,4 +1,5 @@
 import api from './apiConfig'
+import { getUser } from './users';
 
 export const createYardSale = async (yardSaleData) => {
   try {
@@ -28,6 +29,16 @@ export const getYardSales = async () => {
 export const getYardSale = async (yardId) => {
   try {
     const response = await api.get(`/yard-sales/${yardId}`)
+    return response.data;
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+export const getYardSaleByOwnerId = async (yardOwnerId) => {
+  try {
+    const response = await getUser(yardOwnerId)
+    console.log(response)
     return response.data;
   } catch (error) {
     console.error(error)
